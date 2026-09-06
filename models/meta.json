@@ -1,0 +1,167 @@
+{
+  "trained_on_rows": 4909,
+  "data_start": "2013-03-27",
+  "data_end": "2026-09-03",
+  "last_known_price": 6330.720902,
+  "horizons_trained": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    14,
+    21,
+    28,
+    35,
+    42,
+    49,
+    56,
+    63,
+    70,
+    77,
+    84,
+    91,
+    98,
+    105,
+    112,
+    119,
+    126,
+    133,
+    140,
+    147,
+    154,
+    161,
+    168,
+    175,
+    182,
+    189,
+    196,
+    203,
+    210,
+    217,
+    224,
+    231,
+    238,
+    245,
+    252,
+    259,
+    266,
+    273,
+    280,
+    287,
+    294,
+    301,
+    308,
+    315,
+    322,
+    329,
+    336,
+    343,
+    350,
+    357,
+    364,
+    365
+  ],
+  "evaluation": {
+    "1": {
+      "raw_model_mae_egp": 14.1,
+      "calibrated_mae_egp": 14.03,
+      "baseline_mae_egp": 14.03,
+      "improvement_vs_baseline_pct": 0.0,
+      "blend_alpha": 0.0,
+      "band_scale": 1.0,
+      "rmse_egp": 39.39,
+      "mape_pct": 0.63,
+      "directional_accuracy_pct": 9.6,
+      "quantile_coverage_pct": 79.5
+    },
+    "7": {
+      "raw_model_mae_egp": 45.21,
+      "calibrated_mae_egp": 43.44,
+      "baseline_mae_egp": 43.44,
+      "improvement_vs_baseline_pct": 0.0,
+      "blend_alpha": 0.0,
+      "band_scale": 1.1,
+      "rmse_egp": 103.72,
+      "mape_pct": 1.97,
+      "directional_accuracy_pct": 0.0,
+      "quantile_coverage_pct": 80.7
+    },
+    "30": {
+      "raw_model_mae_egp": 109.09,
+      "calibrated_mae_egp": 93.04,
+      "baseline_mae_egp": 98.32,
+      "improvement_vs_baseline_pct": 5.4,
+      "blend_alpha": 0.35,
+      "band_scale": 1.5,
+      "rmse_egp": 196.28,
+      "mape_pct": 4.33,
+      "directional_accuracy_pct": 55.2,
+      "quantile_coverage_pct": 79.5
+    },
+    "90": {
+      "raw_model_mae_egp": 266.89,
+      "calibrated_mae_egp": 208.87,
+      "baseline_mae_egp": 212.86,
+      "improvement_vs_baseline_pct": 1.9,
+      "blend_alpha": 0.1,
+      "band_scale": 8.0,
+      "rmse_egp": 398.66,
+      "mape_pct": 8.69,
+      "directional_accuracy_pct": 62.9,
+      "quantile_coverage_pct": 69.6
+    },
+    "180": {
+      "raw_model_mae_egp": 366.02,
+      "calibrated_mae_egp": 323.79,
+      "baseline_mae_egp": 346.55,
+      "improvement_vs_baseline_pct": 6.6,
+      "blend_alpha": 0.35,
+      "band_scale": 8.0,
+      "rmse_egp": 557.68,
+      "mape_pct": 14.84,
+      "directional_accuracy_pct": 75.2,
+      "quantile_coverage_pct": 57.2
+    },
+    "365": {
+      "raw_model_mae_egp": 397.32,
+      "calibrated_mae_egp": 387.85,
+      "baseline_mae_egp": 624.9,
+      "improvement_vs_baseline_pct": 37.9,
+      "blend_alpha": 0.85,
+      "band_scale": 8.0,
+      "rmse_egp": 500.84,
+      "mape_pct": 29.26,
+      "directional_accuracy_pct": 82.8,
+      "quantile_coverage_pct": 50.3
+    }
+  },
+  "deployment_calibration": {
+    "1": {
+      "blend_alpha": 0.1,
+      "band_scale": 0.7
+    },
+    "7": {
+      "blend_alpha": 1.0,
+      "band_scale": 1.0
+    },
+    "30": {
+      "blend_alpha": 1.0,
+      "band_scale": 1.0
+    },
+    "90": {
+      "blend_alpha": 1.0,
+      "band_scale": 1.0
+    },
+    "180": {
+      "blend_alpha": 1.0,
+      "band_scale": 1.0
+    },
+    "365": {
+      "blend_alpha": 1.0,
+      "band_scale": 1.0
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# The Vercel deployment only needs: app.py, model/ (predictor.py,
+# live_price.py, live_quotes.py, __init__.py - NOT train_model.py),
+# models/, templates/, public/, feature_utils.py, data/processed/
+# price_history.csv + recent_market_window.csv, and requirements.txt.
+# Everything below is only needed for local development / the offline
+# retraining pipeline and would just bloat the serverless function bundle
+# (Vercel's Python function bundle limit is 500MB unzipped).
+data/raw/
+data/processed/merged_dataset.csv
+data_pipeline/
+model/train_model.py
+requirements-dev.txt
+*.ipynb
+.github/
+.git/

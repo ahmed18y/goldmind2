@@ -1,0 +1,15 @@
+# Runtime dependencies for the deployed web app ONLY (app.py + model/
+# predictor.py, live_price.py, live_quotes.py + feature_utils.py).
+#
+# IMPORTANT: this is the file Vercel's Python builder installs into the
+# deployed serverless function. Keep it minimal - every package listed
+# here adds to the function bundle size (Vercel's Python function limit
+# is 500MB unzipped). For local development / retraining tooling
+# (yfinance, openpyxl - never imported by the deployed app), use
+# requirements-dev.txt instead.
+Flask==3.1.3
+requests==2.33.1
+pandas==3.0.2
+numpy==2.4.4
+scikit-learn==1.8.0
+joblib==1.5.3

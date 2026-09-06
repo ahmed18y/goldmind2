@@ -1,0 +1,15 @@
+# Extra dependencies needed ONLY for local development / the offline data
+# pipeline (data_pipeline/update_gold_project.py, data_pipeline/build_dataset.py,
+# model/train_model.py) and the GitHub Actions daily retrain job.
+#
+# These are never imported by the deployed app (app.py / model/predictor.py),
+# so they intentionally live in a separate file instead of requirements.txt -
+# installing them into the Vercel serverless function would only bloat the
+# deployment bundle for zero benefit.
+#
+# Install both when working on the project locally:
+#   pip install -r requirements.txt -r requirements-dev.txt
+-r requirements.txt
+yfinance>=0.2.55,<2.0.0
+openpyxl==3.1.5
+xlrd==2.0.2

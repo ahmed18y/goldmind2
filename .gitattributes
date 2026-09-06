@@ -1,0 +1,8 @@
+# Normalize line endings so the repo doesn't mix CRLF/LF across files
+# (this happened before: update_gold_project.py had CRLF while every other
+# .py file in the repo used LF, which is just noisy in diffs/git blame).
+* text=auto eol=lf
+*.joblib binary
+*.xlsx binary
+*.png binary
+*.jpg binary

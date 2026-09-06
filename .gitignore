@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+*.log
+
+# Fully regenerable from data/raw/ via data_pipeline/build_dataset.py.
+# It's ~19-20MB - committing a fresh full copy of it every single day
+# (the daily GitHub Actions retrain job used to do exactly that) is the
+# single biggest driver of repo bloat. The workflow still regenerates it
+# locally on the runner each run (train_model.py needs it on disk), it's
+# just not committed anymore.
+data/processed/merged_dataset.csv

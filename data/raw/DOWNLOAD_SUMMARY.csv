@@ -1,0 +1,13 @@
+﻿Source,Item,File,Category,Status
+GoldRate24,Egypt Gold 21K,GoldRate24_Egypt_21K.csv,TARGET,FAILED
+Yahoo Finance,GC=F,Gold_World.csv,CORE,FAILED
+Yahoo Finance,EGP=X,USD_EGP.csv,CORE,FAILED
+Yahoo Finance,DX-Y.NYB,US_Dollar_Index_DXY.csv,STRONG,FAILED
+Yahoo Finance,CL=F,WTI_Oil.csv,STRONG,FAILED
+Yahoo Finance,^GSPC,SP500.csv,EXPERIMENTAL,FAILED
+Yahoo Finance,^VIX,VIX.csv,EXPERIMENTAL,FAILED
+Yahoo Finance,SI=F,Silver.csv,EXPERIMENTAL,FAILED
+FRED,DGS10,US_10Y_Treasury_Yield.csv,STRONG,FAILED
+FRED,USEPUINDXD,US_Economic_Policy_Uncertainty_Daily.csv,EVENTS,FAILED
+FRED,GEPUCURRENT,Global_Economic_Policy_Uncertainty_Monthly.csv,EVENTS,FAILED
+Matteo Iacoviello (FRB),GPR Daily Index,Geopolitical_Risk_Index_Daily.csv,EVENTS,FAILED

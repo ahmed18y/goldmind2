@@ -1,0 +1,63 @@
+name: Daily data refresh + retrain
+
+# Runs automatically every day, and can also be triggered manually from
+# the Actions tab (Run workflow button).
+on:
+  schedule:
+    - cron: "30 3 * * *"   # 03:30 UTC ≈ after markets settle for the day
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # requirements-dev.txt pulls in requirements.txt too, plus the
+      # pipeline-only deps (yfinance, openpyxl, xlrd) that update_gold_project.py
+      # / build_dataset.py / train_model.py need but the deployed Vercel app
+      # does not - keeping them out of requirements.txt is what keeps the
+      # Vercel function bundle small.
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      # This step now EXITS NON-ZERO (via SystemExit(1) in main()) if any
+      # required source (GoldRate24 target, any Yahoo ticker, any FRED
+      # series) fails to download - which stops the job here, before
+      # building/training/committing on incomplete or stale data. Only the
+      # optional GPR index is allowed to fail without stopping the run.
+      - name: Download latest raw data (Yahoo / FRED / GPR / GoldRate24)
+        run: python data_pipeline/update_gold_project.py
+
+      - name: Rebuild merged feature dataset
+        run: python data_pipeline/build_dataset.py
+
+      - name: Retrain model
+        run: python model/train_model.py
+
+      - name: Commit updated data + model if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # NOTE: data/processed/merged_dataset.csv is intentionally NOT
+          # committed (see .gitignore) - it's ~19-20MB and 100% regenerable
+          # from data/raw/ via build_dataset.py, so committing a fresh copy
+          # of it every day was the main source of repo bloat from this
+          # daily job. price_history.csv and recent_market_window.csv (the
+          # small files the deployed app actually reads) are still tracked.
+          git add data/raw data/processed models
+          if git diff --cached --quiet; then
+            echo "Nothing changed today - skipping commit."
+          else
+            git commit -m "chore: daily data refresh + model retrain ($(date -u +%Y-%m-%d))"
+            git push
+          fi

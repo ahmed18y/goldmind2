@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">GoldMind — توقعات سعر الذهب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,500&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-logo" width="42" height="42" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GoldMind logo">
+      <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f0cf8e"/>
+          <stop offset="100%" stop-color="#b8863a"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="url(#goldGrad)"/>
+      <rect x="24" y="58" width="9" height="18" rx="1.5" fill="#161307" opacity="0.88"/>
+      <rect x="38" y="48" width="9" height="28" rx="1.5" fill="#161307" opacity="0.88"/>
+      <rect x="52" y="36" width="9" height="40" rx="1.5" fill="#161307" opacity="0.88"/>
+      <rect x="66" y="26" width="9" height="50" rx="1.5" fill="#161307" opacity="0.88"/>
+      <g stroke="#161307" stroke-width="2.2" opacity="0.9">
+        <line x1="28.5" y1="55" x2="42.5" y2="45"/>
+        <line x1="42.5" y1="45" x2="56.5" y2="33"/>
+        <line x1="56.5" y1="33" x2="70.5" y2="23"/>
+      </g>
+      <g fill="#f7e2b0" stroke="#161307" stroke-width="1.6">
+        <circle cx="28.5" cy="55" r="4"/>
+        <circle cx="42.5" cy="45" r="4"/>
+        <circle cx="56.5" cy="33" r="4"/>
+        <circle cx="70.5" cy="23" r="4.6"/>
+      </g>
+    </svg>
+    <div class="brand-text">
+      <h1>GoldMind</h1>
+      <p data-i18n="tagline">نظام تنبؤ أسعار الذهب — عيار 21 مصر</p>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <div class="live-pill" id="livePill">
+      <span class="dot"></span>
+      <span id="liveLabel" data-i18n="loading">جاري التحميل…</span>
+    </div>
+    <button class="icon-btn" id="refreshBtn" data-i18n-title="refreshTitle" aria-label="Refresh" title="Refresh">
+      <svg id="refreshIcon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a9 9 0 1 1-3-6.7"/>
+        <path d="M21 3v6h-6"/>
+      </svg>
+    </button>
+    <button class="icon-btn lang-btn" id="langToggle" aria-label="Language / اللغة" title="Language / اللغة">
+      <span id="langLabel">EN</span>
+    </button>
+    <button class="icon-btn" id="themeToggle" data-i18n-title="themeTitle" aria-label="Toggle theme">
+      <svg id="iconSun" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="4.2"/><g stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.2"/><line x1="12" y1="19.8" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.2" y2="12"/><line x1="19.8" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.6" y2="4.4"/></g></svg>
+      <svg id="iconMoon" viewBox="0 0 24 24" width="18" height="18"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= HERO: current + tomorrow + week ================= -->
+  <section class="hero-grid">
+
+    <div class="card price-card current-card">
+      <span class="eyebrow" data-i18n="currentPriceLabel">السعر الحالي · جرام 21</span>
+      <div class="price-row">
+        <span class="currency" id="currencyLabel1">ج.م</span>
+        <span class="big-number" id="currentPrice">—</span>
+      </div>
+      <p class="sub-note" id="currentSourceNote">—</p>
+    </div>
+
+    <div class="card price-card predict-card">
+      <span class="eyebrow" data-i18n="tomorrowLabel">توقع الموديل · بكرة</span>
+      <div class="price-row">
+        <span class="currency" id="currencyLabel2">ج.م</span>
+        <span class="big-number" id="tomorrowPrice">—</span>
+        <span class="delta-badge" id="tomorrowDelta"></span>
+      </div>
+      <p class="sub-note" id="tomorrowDate">—</p>
+      <p class="range-note" id="tomorrowRange">—</p>
+    </div>
+
+    <div class="card price-card predict-card">
+      <span class="eyebrow" data-i18n="weekLabel">توقع الموديل · الأسبوع القادم</span>
+      <div class="price-row">
+        <span class="currency" id="currencyLabel3">ج.م</span>
+        <span class="big-number" id="weekPrice">—</span>
+        <span class="delta-badge" id="weekDelta"></span>
+      </div>
+      <p class="sub-note" id="weekDate">—</p>
+      <p class="range-note" id="weekRange">—</p>
+    </div>
+
+  </section>
+
+  <!-- ================= chart: coming week ================= -->
+  <section class="card chart-card">
+    <div class="chart-head">
+      <h2 data-i18n="weekChartTitle">توقعات الأسبوع القادم</h2>
+      <span class="chart-tag">Forecast</span>
+    </div>
+    <div class="chart-box"><canvas id="weekChart"></canvas></div>
+  </section>
+
+  <!-- ================= charts: past year / past month (actual) ================= -->
+  <section class="two-col">
+    <div class="card chart-card">
+      <div class="chart-head">
+        <h2 data-i18n="pastYearTitle">السنة الماضية</h2>
+        <span class="chart-tag actual">Actual</span>
+      </div>
+      <div class="chart-box"><canvas id="yearActualChart"></canvas></div>
+    </div>
+
+    <div class="card chart-card">
+      <div class="chart-head">
+        <h2 data-i18n="pastMonthTitle">الشهر الماضي</h2>
+        <span class="chart-tag actual">Actual</span>
+      </div>
+      <div class="chart-box"><canvas id="monthActualChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ================= chart: coming year forecast ================= -->
+  <section class="card chart-card">
+    <div class="chart-head">
+      <h2 data-i18n="nextYearTitle">توقعات السنة القادمة</h2>
+      <span class="chart-tag">Forecast</span>
+    </div>
+    <div class="chart-box"><canvas id="yearForecastChart"></canvas></div>
+    <p class="disclaimer" data-i18n="bandDisclaimer">شريط اللون حوالين الخط بيمثل مدى عدم اليقين (10٪–90٪) — كل ما التاريخ أبعد، المدى بيكبر طبيعيًا.</p>
+  </section>
+
+  <!-- ================= custom date lookup ================= -->
+  <section class="card lookup-card">
+    <div class="chart-head">
+      <h2 data-i18n="lookupTitle">اسأل عن أي تاريخ</h2>
+      <span class="chart-tag">Custom</span>
+    </div>
+    <p class="lookup-copy" data-i18n="lookupCopy">اختار أي تاريخ في السنة القادمة، والموديل هيتوقعلك السعر المتوقع في اليوم ده.</p>
+    <form id="lookupForm" class="lookup-form">
+      <input type="date" id="lookupDate" required>
+      <button type="submit" data-i18n="lookupButton">توقّع السعر</button>
+    </form>
+    <div class="lookup-result" id="lookupResult"></div>
+  </section>
+
+  <footer class="page-footer">
+    <p data-i18n="footerDisclaimer">البيانات مبنية على أسعار السوق والدولار وGold World وغيرها من المؤشرات الاقتصادية. التوقعات تقديرية وليست نصيحة استثمارية.</p>
+    <p id="dataThrough"></p>
+  </footer>
+
+</main>
+
+<script src="/vendor/chart.umd.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
